@@ -1,0 +1,38 @@
+body {
+  background: linear-gradient(90deg, #000000 0%, #0f4387 40%, #5fc0ff 80%);
+}
+.todo-app {
+  margin: 2rem auto 0 auto;
+  max-width: 550px;
+}
+
+.top-panel {
+  margin: 1rem 0;
+}
+.btn-info {
+  background: #5fc0ff;
+  border-color: #5fc0ff;
+}
+.btn-info:hover {
+  background: #28a6fa;
+  border-color: #28a6fa;
+}
+.btn-info:not(:disabled):not(.disabled):active {
+  background: #0099ff;
+  border-color: #0099ff;
+}
+.btn-outline-secondary {
+  background: #154d91;
+  border-color: #154d91;
+}
+.btn-outline-secondary:hover {
+  background: #28a6fa;
+  border-color: #28a6fa;
+}
+.btn-outline-secondary:not(:disabled):not(.disabled):active {
+  background: #0099ff;
+  border-color: #0099ff;
+}
+.list-group-item {
+  border: 2px solid rgb(76 162 226);
+}

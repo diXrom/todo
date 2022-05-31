@@ -19,5 +19,5 @@
 
 .todo-list-item.important .todo-list-item-label {
   font-weight: bold;
-  color: steelblue;
+  color: #ff6800;
 }

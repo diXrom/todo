@@ -3,6 +3,7 @@
 }
 
 .app-header h1 {
+  line-height: 1;
   flex-grow: 1;
   color: white;
 }

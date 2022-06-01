@@ -11,11 +11,10 @@ export default class TodoListItem extends Component {
     const { label, done, important, deleteItem, toggleImportant, toggleDone } = this.props;
     return (
       <span className={this.setClasses(done, important)}>
-        <span
-          onClick={toggleDone}
-          className='todo-list-item-label'>
-          {label}
-        </span>
+        <label>
+          <input className='checkbox' onClick={toggleDone} type='checkbox' />
+          <span className='todo-list-item-label'> {label} </span>
+        </label>
         <button type='button'
           onClick={toggleImportant}
           className='btn btn-outline-success btn-sm float-right'>

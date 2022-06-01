@@ -1,4 +1,22 @@
+import { Component } from 'react';
 import './SearchPanel.css';
 
-const TodoInput = () => <input type='text' className='form-control search-input' placeholder='Type to search' />;
-export default TodoInput;
+export default class TodoInput extends Component {
+  state = { label: '' };
+  searchTask = (e) => {
+    this.setState({ label: e.target.value });
+    this.props.searchTask(e.target.value);
+  };
+  render() {
+    return (
+      <input
+        onChange={this.searchTask}
+        value={this.state.label}
+        className='form-control search-input'
+        type='text'
+        placeholder='Type to search'
+      />);
+  }
+}
+
+

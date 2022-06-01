@@ -7,13 +7,13 @@ import FormAddItem from '../FormAddItem';
 import './App.css';
 
 export default class App extends Component {
-
+  id = 0;
   state = {
-    listData: ['Learn React', 'Love React', 'Live React']
-      .map((str, i) => this.creteItem(i, str)),
+    listData: ['Learn React', 'Love React', 'Live React'].map(str => this.creteItem(str)),
+    search: '',
   };
-  creteItem(id, label) {
-    return { id: id, label: label, done: false, important: false };
+  creteItem(label) {
+    return { id: (this.id += 1), label: label, done: false, important: false };
   }
   toggleItem(arr, id, prop) {
     return arr.map(list =>
@@ -26,7 +26,7 @@ export default class App extends Component {
   };
   addNewItem = (value) => {
     this.setState(({ listData }) => (
-      { listData: [...listData, this.creteItem(listData.length, value)] }
+      { listData: [...listData, this.creteItem(value)] }
     ));
   };
   toggleProp = (id, prop) => {
@@ -38,16 +38,24 @@ export default class App extends Component {
     return this.state.listData
       .filter(list => isDone ? list.done : !list.done).length;
   };
+  searchTask = (label) => this.setState({ search: label });
+  filterTask = (value, arr) => {
+    if (value === 'active') return arr.filter(list => !list.done);
+    if (value === 'done') return arr.filter(list => list.done);
+    if (!value.length) return arr;
+    return arr.filter(list => list.label.toLowerCase().includes(value.toLowerCase()));
+  };
+  statusTask = (label) => this.setState({ search: label });
   render() {
     return (
       <div className='todo-app' >
         <AppHeader toDo={this.getSumTask(false)} done={this.getSumTask(true)} />
         <div className='top-panel d-flex'>
-          <SearchPanel />
-          <ItemStatusFilter />
+          <SearchPanel searchTask={this.searchTask} />
+          <ItemStatusFilter statusTask={this.statusTask} />
         </div>
         <TodoList
-          data={this.state.listData}
+          data={this.filterTask(this.state.search, this.state.listData)}
           toggleImportant={(id) => this.toggleProp(id, 'important')}
           toggleDone={(id) => this.toggleProp(id, 'done')}
           deleteItem={(id) => this.deleteCurentItem(id)} />

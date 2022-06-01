@@ -2,17 +2,16 @@ import { Component } from 'react';
 import './TodoListItem.css';
 
 export default class TodoListItem extends Component {
-  /*  state = { done: false, important: false };
-  setDone = () => this.setState(({ done }) => ({ done: !done }));
-  setImportant = () => this.setState(({ important }) =>({ important: !important }));
-   */
-  setClasses = (done, important) => `todo-list-item${done ? ' done' : ''}${important ? ' important' : ''}`;
+  setClasses = (done, important) =>
+    `todo-list-item${done ? ' done' : ''}${important ? ' important' : ''}`;
   render() {
     const { label, done, important, deleteItem, toggleImportant, toggleDone } = this.props;
     return (
       <span className={this.setClasses(done, important)}>
         <label>
-          <input className='checkbox' onClick={toggleDone} type='checkbox' />
+          <input className='checkbox'
+            onClick={toggleDone} type='checkbox'
+            defaultChecked={done} />
           <span className='todo-list-item-label'> {label} </span>
         </label>
         <button type='button'
